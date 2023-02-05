@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="mainpage">
+    {% if user.is_authenticated %}
+    <div class="expens">
+        <form action="" method="POST" class="wallet shadow p-3 mb-5 bg-body rounded">
+            <h1>WALLET</h1>
+            {% csrf_token %}
+            <input type="text" name="amount" placeholder="Total amount given for impress" class="form-control"><br>
+            <input type="text" name="previouse_balance" placeholder="Balance from previous impress"
+                class="form-control"><br>
+            <input type="submit" value="Submit" class="btn btn-secondary">
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

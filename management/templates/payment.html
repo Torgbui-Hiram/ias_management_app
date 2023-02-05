@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="mainpage">
+    {% if user.is_authenticated %}
+    <div class="expens shadow p-3 mb-5 bg-body rounded">
+        <form action="" method="POST">
+            <h1>PAYMENT AND EXPENSIS</h1>
+            {% csrf_token %}
+            <input type="text" name="claimed_by" placeholder="Name of person making claim" class="form-control"><br>
+            <input type="text" name="purpose_of" placeholder="Reason for the claim" class="form-control"><br>
+            <input type="text" name="amount" placeholder="Aamount given" class="form-control"><br>
+            <input type="submit" value="Submit" class="btn btn-secondary">
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
