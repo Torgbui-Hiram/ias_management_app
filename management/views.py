@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import AvailableCash, Expenditure
-from .forms import ExpenditureForm, CashForm
+from .models import AvailableCash, Expenditure, Employee_Records
+from .forms import ExpenditureForm, CashForm, EmployeeForm
 
 # Create your views here.
 
@@ -43,8 +43,26 @@ def payment(request):
 
 
 def balance(request):
-    return render(request, 'balance.html')
+    amount = AvailableCash.objects.all()
+    return render(request, 'balance.html', {'amount': amount})
 
 
+# Display employee data and information
 def employee(request):
-    return render(request, 'employment.html')
+    records = Employee_Records.objects.all()
+    return render(request, 'employment.html', {'records': records})
+
+
+# Form to register an employee
+def employment_form(request):
+    if request.method == "POST":
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            messages.success(request, 'Employee data stored succesfully')
+            form.save()
+        else:
+            messages.success(
+                request, 'Sorry! there was an error with your form, try again')
+    else:
+        form = EmployeeForm()
+    return render(request, 'employmentform.html', {'form': form})

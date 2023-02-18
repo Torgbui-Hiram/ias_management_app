@@ -2,27 +2,44 @@
 {% load static %}
 {% block content %}
 <div class="mainpage">
+    {% if user.is_authenticated %}
+    {% if records %}
     <div class="employee shadow-sm p-3 mb-5 bg-body rounded">
         <h1>EMPLOYEE RECORDS</h1>
         <table class="table table-hover table-bordered">
             <thead class="table-dark">
-                <th>STAFF ID</th>
-                <th>NATIONALITY</th>
-                <th>NATIONAL ID</th>
-                <th>APPOINTMENT DATE</th>
+                <th>FIRST NAME</th>
+                <th>MIDLE NAME</th>
+                <th>LAST NAME</th>
+                <th>OTHER NAME</th>
                 <th>DATE OF BIRTH</th>
-                <th>JOB TITTLE</th>
+                <th>NATIONALITY</th>
+                <th>ID TYPE</th>
+                <th>ID NUMBER</th>
+                <th>JOB TITLE</th>
+                <th>APPOINTMENT DATE</th>
+                <th>ROLE</th>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
+                {% for record in records %}
+                <td>{{record.first_name}}</td>
+                <td>{{record.midle_name}}</td>
+                <td>{{record.last_name}}</td>
+                <td>{{record.other_name}}</td>
+                <td>{{record.date_of_birth}}</td>
+                <td>{{record.nationality}}</td>
+                <td>{{record.prove_of_id}}</td>
+                <td>{{record.id_number}}</td>
+                <td>{{record.job_title}}</td>
+                <td>{{record.appointment_date}}</td>
+                <td>{{record.role}}</td>
+                {% endfor %}
             </tbody>
 
         </table>
     </div>
+
+    {% endif %}
+    {% endif %}
 </div>
 {% endblock %}

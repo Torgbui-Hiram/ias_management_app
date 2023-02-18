@@ -34,11 +34,12 @@
       <h1>INDUSTRIAL AND ALLIED MANAGEMENT SYSTEM</h1>
     </div>
     <div class="lpanel shadow">
-      <a href="{% url 'cash' %}" class="item"><i class="fa-solid fa-cedi-sign"> </i> WALLET</a>
+      <a href="{% url 'cash' %}" class="item"><i class="fa-solid fa-cedi-sign"> </i>ADD TO WALLET</a>
       <a href="{% url 'property' %}" class="item">PROPERTIES</a>
       <a href="{% url 'payment' %}" class="item">PAYMENT</a>
       <a href="{% url 'balance' %}" class="item">BALANCE</a>
-      <a href="{% url 'employment' %}" class="item">EMPLOYEE</a>
+      <a href="{% url 'employment' %}" class="item">STAFF RECORDS</a>
+      <a href="{% url 'employ_form' %}" class="item">REGISTER STAFF</a>
     </div>
     {% block content %}
     <div class="mainpage">
@@ -51,6 +52,7 @@
       {% endfor %}
       {% endif %}
       {% if cash %}
+      {% if user.is_authenticated %}
       <div class="tcont shadow p-3 mb-5 bg-body rounded">
         <h1 class="h1_">FINANCIAL RECORDS</h1>
         <table class="table table-hover table-bordered">
@@ -72,6 +74,7 @@
           </tbody>
         </table>
       </div>
+      {% endif %}
       <br>
       {% endif %}
     </div>

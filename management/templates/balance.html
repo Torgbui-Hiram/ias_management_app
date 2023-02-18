@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="mainpage">
+    {% if user.is_authenticated %}
     <div class="balance shadow-sm p-3 mb-5 bg-body rounded ">
         <h1>BALANCE FROM TOTAL AMOUNT</h1>
         <table class="table table-hover table-bordered">
@@ -10,11 +11,16 @@
                 <th>Current balance</th>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>2</td>
+                {% if amount %}
+                {% for money in amount %}
+                <td>{{money.amount}}</td>
+                <td>{{money.date}}</td>
+                {% endfor %}
+                {% endif %}
             </tbody>
 
         </table>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
